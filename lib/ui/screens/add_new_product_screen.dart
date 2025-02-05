@@ -123,4 +123,15 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _nameTEController.dispose();
+    _priceTEController.dispose();
+    _totalPriceTEController.dispose();
+    _quantityTEController.dispose();
+    _codeTEController.dispose();
+    _imageTEController.dispose();
+    super.dispose();
+  }
 }
