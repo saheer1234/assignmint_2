@@ -1,22 +1,25 @@
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
+import '../../models/product.dart';
 import '../screens/update_prodect_screen.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({super.key});
+  const ProductItem({super.key, required this.product});
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Image.network('data:image/jpeg;base64,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'),
-      title: Text('Product name'),
+     // leading: Image.network(product.image ?? ''),
+      title: Text(product.productName ?? ''),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Product Code: #CODE'),
-          Text('Quantity: 12'),
-          Text('Price: 29393'),
-          Text('Total Price: 3837377'),
+          Text('Product Code: ${product.productCode ?? ''}'),
+          Text('Quantity: ${product.quantity ?? ''}'),
+          Text('Price: ${product.unitPrice ?? ''}'),
+          Text('Total Price: ${product.totalPrice ?? ''}'),
         ],
       ),
       trailing: Wrap(

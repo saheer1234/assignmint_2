@@ -11,10 +11,11 @@ class AddNewProductScreen extends StatefulWidget {
 class _AddNewProductScreenState extends State<AddNewProductScreen> {
   final TextEditingController _nameTEController = TextEditingController();
   final TextEditingController _priceTEController = TextEditingController();
-  final TextEditingController _totalpriceTEController = TextEditingController();
+  final TextEditingController _totalPriceTEController = TextEditingController();
   final TextEditingController _quantityTEController = TextEditingController();
   final TextEditingController _imageTEController = TextEditingController();
   final TextEditingController _codeTEController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,7 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                 labelText: 'Product name',
               ),
               validator: (String? value) {
-                if(value?.trim().isEmpty ?? true) {
+                if (value?.trim().isEmpty ?? true) {
                   return 'Enter product name';
                 }
                 return null;
@@ -55,21 +56,21 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                 labelText: 'Product price',
               ),
               validator: (String? value) {
-                if(value?.trim().isEmpty ?? true) {
-                  return 'Enter product name';
+                if (value?.trim().isEmpty ?? true) {
+                  return 'Enter product price';
                 }
                 return null;
               },
             ),
             TextFormField(
-              controller: _totalpriceTEController,
+              controller: _totalPriceTEController,
               decoration: InputDecoration(
                 hintText: 'Total price',
                 labelText: 'Product total price',
               ),
               validator: (String? value) {
-                if(value?.trim().isEmpty ?? true) {
-                  return 'Enter product name';
+                if (value?.trim().isEmpty ?? true) {
+                  return 'Enter product total price';
                 }
                 return null;
               },
@@ -78,11 +79,11 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
               controller: _quantityTEController,
               decoration: InputDecoration(
                 hintText: 'Quantity',
-                labelText: 'Product Quantity',
+                labelText: 'Product quantity',
               ),
               validator: (String? value) {
-                if(value?.trim().isEmpty ?? true) {
-                  return 'Enter product name';
+                if (value?.trim().isEmpty ?? true) {
+                  return 'Enter product quantity';
                 }
                 return null;
               },
@@ -91,10 +92,10 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
               controller: _codeTEController,
               decoration: InputDecoration(
                 hintText: 'Code',
-                labelText: 'Product Code',
+                labelText: 'Product code',
               ),
               validator: (String? value) {
-                if(value?.trim().isEmpty ?? true) {
+                if (value?.trim().isEmpty ?? true) {
                   return 'Enter product name';
                 }
                 return null;
@@ -103,31 +104,23 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
             TextFormField(
               controller: _imageTEController,
               decoration: InputDecoration(
-                hintText: 'Image URL',
-                labelText: 'Product Image',
+                hintText: 'Image url',
+                labelText: 'Product image url',
               ),
               validator: (String? value) {
-                if(value?.trim().isEmpty ?? true) {
-                  return 'Enter product name';
-                }
-                return null;
-              },
-            ),
+                if (value?.trim().isEmpty ?? true) {
+                  return 'Enter product image url';
+              }
+              return null;
+            },
+          ),
             const SizedBox(height: 16,),
-            ElevatedButton(onPressed: () {}, child: Text('Add Product'))
-          ],
-        ),
-      );
-  }
-
-  @override
-  void dispose() {
-   _nameTEController.dispose();
-   _priceTEController.dispose();
-   _totalpriceTEController.dispose();
-   _quantityTEController.dispose();
-   _codeTEController.dispose();
-   _imageTEController.dispose();
-    super.dispose();
+          ElevatedButton(
+              onPressed: () {},
+              child: Text('Add product')
+          )
+        ],
+      ),
+    );
   }
 }
