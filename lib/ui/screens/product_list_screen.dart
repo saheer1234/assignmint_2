@@ -14,7 +14,7 @@ class ProductListScreen extends StatefulWidget {
 
 class _ProductListScreenState extends State<ProductListScreen> {
   List<Product> productList = [];
-  bool _getProductListInprogress = false;
+  bool _getProductListInProgress = false;
 
   @override
   void initState() {
@@ -30,7 +30,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
         title: const Text('Product List'),
       ),
       body: Visibility(
-        visible: _getProductListInprogress == false,
+        visible: _getProductListInProgress == false,
         replacement: Center(
           child: CircularProgressIndicator(),
         ),
@@ -52,7 +52,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
     );
   }
   Future<void> _getProductList() async {
-    _getProductListInprogress = true;
+    _getProductListInProgress = true;
     setState(() {});
     Uri uri = Uri.parse('https://crud.teamrabbil.com/api/v1/ReadProduct');
     Response response = await get(uri);
@@ -76,7 +76,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
       }
       setState(() {});
     }
-    _getProductListInprogress = false;
+    _getProductListInProgress = false;
     setState(() {});
   }
 }
