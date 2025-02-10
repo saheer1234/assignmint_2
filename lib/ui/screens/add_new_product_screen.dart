@@ -173,7 +173,7 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
       _clearTextFields();
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-              content: Text('New product added')
+              content: Text('New product added!')
           )
       );
     } else {
