@@ -2,6 +2,7 @@ import 'package:app1/ui/screens/add_new_product_screen.dart';
 import 'package:app1/ui/screens/product_list_screen.dart';
 import 'package:app1/ui/screens/update_prodect_screen.dart';
 import 'package:flutter/material.dart';
+import 'models/product.dart';
 
 class CRUDApp extends StatelessWidget {
   const CRUDApp({super.key});
@@ -11,10 +12,19 @@ class CRUDApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
-      routes: {
-        '/': (context) => const ProductListScreen(),
-        AddNewProductScreen.name: (context) => AddNewProductScreen(),
-        UpdateProductScreen.name: (context) => UpdateProductScreen(),
+      onGenerateRoute: (RouteSettings settings) {
+        late Widget widget;
+        if (settings.name == '/') {
+          widget = const ProductListScreen();
+        } else if (settings.name == AddNewProductScreen.name) {
+          widget = const AddNewProductScreen();
+        } else if (settings.name == UpdateProductScreen.name) {
+          final Product product = settings.arguments as Product;
+          widget = UpdateProductScreen(product: product);
+        }
+        return MaterialPageRoute(builder: (context) {
+          return widget;
+        });
       },
     );
   }

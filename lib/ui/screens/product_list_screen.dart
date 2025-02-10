@@ -18,7 +18,6 @@ class _ProductListScreenState extends State<ProductListScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _getProductList();
   }
@@ -28,19 +27,30 @@ class _ProductListScreenState extends State<ProductListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Product List'),
+        actions: [
+          IconButton(onPressed: () {
+            _getProductList();
+          },
+              icon: Icon(Icons.refresh))
+        ],
       ),
-      body: Visibility(
-        visible: _getProductListInProgress == false,
-        replacement: Center(
-          child: CircularProgressIndicator(),
-        ),
-        child: ListView.builder(
-          itemCount: productList.length,
-            itemBuilder: (context, index) {
-          return ProductItem(
-            product: productList[index],
-          );
-        }
+      body: RefreshIndicator(
+        onRefresh: () async {
+          _getProductList();
+        },
+        child: Visibility(
+          visible: _getProductListInProgress == false,
+          replacement: Center(
+            child: CircularProgressIndicator(),
+          ),
+          child: ListView.builder(
+            itemCount: productList.length,
+              itemBuilder: (context, index) {
+            return ProductItem(
+              product: productList[index],
+            );
+          }
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -52,6 +62,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
     );
   }
   Future<void> _getProductList() async {
+    productList.clear();
     _getProductListInProgress = true;
     setState(() {});
     Uri uri = Uri.parse('https://crud.teamrabbil.com/api/v1/ReadProduct');

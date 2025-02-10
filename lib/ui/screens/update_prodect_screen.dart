@@ -1,9 +1,13 @@
+import 'package:app1/models/product.dart';
 import 'package:flutter/material.dart';
 
 class UpdateProductScreen extends StatefulWidget {
-  const UpdateProductScreen({super.key});
+  const UpdateProductScreen({super.key, required this.product});
 
   static const String name = '/update-product';
+
+  final Product product;
+
   @override
   State<UpdateProductScreen> createState() => _UpdateProductScreenState();
 }
@@ -15,6 +19,17 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
   final TextEditingController _quantityTEController = TextEditingController();
   final TextEditingController _imageTEController = TextEditingController();
   final TextEditingController _codeTEController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _nameTEController.text = widget.product.productName ?? '';
+    _priceTEController.text = widget.product.unitPrice ?? '';
+    _totalpriceTEController.text = widget.product.totalPrice ?? '';
+    _quantityTEController.text = widget.product.quantity ?? '';
+    _codeTEController.text = widget.product.productCode ?? '';
+    _imageTEController.text = widget.product.image ?? '';
+  }
 
   @override
   Widget build(BuildContext context) {
